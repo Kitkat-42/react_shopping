@@ -11,6 +11,12 @@ function App() {
   ]);
   let [따봉, 따봉변경] = useState(0);
   let [작성일, 작성일변경] = useState(["2021.8.24", "2021.7.1", "2021.6.30"]);
+  let [modal, modal변경] = useState(false);
+  let array = [2, 3, 4];
+
+  let newArray = array.map(function (a) {
+    return a * 2;
+  });
 
   function 제목바꾸기() {
     // deep copy: 같은 값 공유 안하고 완전히 새로운 배열 만듦
@@ -32,33 +38,15 @@ function App() {
       >
         정렬
       </button>
-      <div className="list">
-        <h3>
-          {" "}
-          {글제목[0]}{" "}
-          <span
-            onClick={() => {
-              따봉변경(따봉 + 1);
-            }}
-          >
-            👍🏻
-          </span>
-          {따봉}
-        </h3>
-        <p>{작성일[0]}</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h3> {글제목[1]} </h3>
-        <p>{작성일[1]}</p>
-        <hr />
-      </div>
-      <div className="list">
-        <h3> {글제목[2]} </h3>
-        <p>{작성일[2]}</p>
-        <hr />
-      </div>
-      <Modal />
+
+      {글제목.map((v, i) => {
+        return (
+          <div className="list">
+            <h3>{v}</h3>
+            <p>{작성일[i]}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -67,7 +55,7 @@ function Modal() {
   //원하는 이름 맘대로 지어서 쓸 수 있다
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h3>제목</h3>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
